@@ -3,17 +3,20 @@
   margin: 0 auto;
   padding: 60px 0;
 }
+
 .character-header {
   display: flex;
   gap: 40px;
   align-items: flex-start;
 }
+
 .character-image {
   width: 300px;
   height: 400px;
   object-fit: cover;
   border-radius: 16px;
 }
+
 .character-image-placeholder {
   width: 300px;
   height: 400px;
@@ -25,6 +28,7 @@
   border-radius: 16px;
   color: var(--muted);
 }
+
 .character-info {
   flex: 1;
 }
@@ -53,6 +57,7 @@
 .character-biography {
   line-height: 1.8;
 }
+
 .character-traits {
   display: flex;
   flex-wrap: wrap;
@@ -69,6 +74,7 @@
   color: var(--muted);
   font-size: 0.85rem;
 }
+
 @media (max-width: 768px) {
   .character-details {
     width: min(100% - 30px, 1000px);

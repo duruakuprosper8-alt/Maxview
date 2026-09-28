@@ -81,12 +81,23 @@
   font-family: var(--font-heading);
   font-size: 1.3rem;
   font-weight: 700;
+  overflow: hidden;
 }
+
 .edit-avatar img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: 50%;
+}
+
+.clickable-avatar {
+  position: relative;
+  cursor: pointer;
+}
+
+.clickable-avatar:hover {
+  opacity: 0.9;
 }
 
 .avatar-actions {
@@ -153,8 +164,9 @@
   outline: none;
   font-family: var(--font-body);
   font-size: 0.9rem;
-  transition: border-color var(--transition),
-              box-shadow var(--transition);
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition);
 }
 
 .form-group textarea {
@@ -259,6 +271,7 @@
   border: 1px solid var(--glass-border);
   background: var(--surface-light);
   color: var(--text);
+  text-decoration: none;
 }
 
 .cancel-button:hover {
@@ -322,35 +335,4 @@
     width: 100%;
     text-align: center;
   }
-
-  .clickable-avatar {
-  position: relative;
-  cursor: pointer;
-}
-
-.clickable-avatar:hover {
-  border-color: var(--primary);
-}
-
-/* .avatar-camera {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  width: 32px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background: var(--primary);
-  color: var(--white);
-  font-size: 0.9rem;
-  border: 3px solid var(--surface);
-  opacity: 0;
-  transition: var(--transition);
-} */
-
-/* .clickable-avatar:hover .avatar-camera {
-  opacity: 1;
-} */
 }

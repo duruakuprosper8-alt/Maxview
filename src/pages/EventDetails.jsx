@@ -1,36 +1,81 @@
-import { useParams, Link } from "react-router-dom"
-import events from "../data/events.json"
+import { useParams, Link } from "react-router-dom";
+import events from "../data/events.json";
 
 function EventDetails() {
-  const { id } = useParams()
-  const event = events.find((e) => String(e.id) === id)
+  const { id } = useParams();
+
+  const event = events.find((item) => String(item.id) === String(id));
 
   if (!event) {
-    return <div>Event not found. <Link to="/events">Go back</Link></div>
+    return (
+      <div className="event-details">
+        <h1>Event not found</h1>
+        <Link to="/events">Go back to events</Link>
+      </div>
+    );
   }
 
+  const mapUrl = `https://maps.google.com/maps?q=${encodeURIComponent(
+    event.location
+  )}&z=13&output=embed`;
+
   return (
-    <div>
-      <Link to="/events">Back to events</Link>
-      <h1>{event.title}</h1>
-      <p>{event.city}</p>
-      <p>{event.date}</p>
-      <img src={event.image} alt={event.title} width="400" />
-      <p>{event.description}</p>
-      <p>Location: {event.location}</p>
+    <section className="event-details">
+      <Link to="/events" className="event-back-link">
+        Back to events
+      </Link>
 
-      {/* simple map */}
-      <iframe
-        title="map"
-        src={`https://maps.google.com/maps?q=${event.location}&z=13&output=embed`}
-        width="100%"
-        height="250"
-      ></iframe>
+      <div className="event-details-header">
+        <span className="event-city">{event.city}</span>
+        <h1>{event.title}</h1>
+        <p className="event-date">{event.date}</p>
+      </div>
 
-      <br />
-      <a href={event.ticketLink} target="_blank" rel="noreferrer">Buy Ticket</a>
-    </div>
-  )
+      {event.image ? (
+        <img
+          src={event.image}
+          alt={event.title}
+          className="event-details-image"
+        />
+      ) : (
+        <div className="event-image-placeholder">
+          No image available
+        </div>
+      )}
+
+      <div className="event-details-content">
+        <p>{event.description}</p>
+
+        <div className="event-location">
+          <h2>Location</h2>
+          <p>{event.location}</p>
+        </div>
+
+        <div className="event-map">
+          <iframe
+            title={`Map showing ${event.location}`}
+            src={mapUrl}
+            width="100%"
+            height="300"
+            style={{ border: 0 }}
+            loading="lazy"
+            allowFullScreen
+          />
+        </div>
+
+        {event.ticketLink && (
+          <a
+            href={event.ticketLink}
+            target="_blank"
+            rel="noreferrer"
+            className="event-ticket-link"
+          >
+            Get Tickets
+          </a>
+        )}
+      </div>
+    </section>
+  );
 }
 
 export default EventDetails;
